@@ -19,14 +19,20 @@ class Car{
 	}
 }
 
+var carVar;
+
+beforeEach(() => {
+	carVar = new Car('InitStatus');
+});
+
 describe('Car Basic Tests', () => {
 	it('checkPark', () => {
-		const carVar = new Car('InitStatus');
+		// const carVar = new Car('InitStatus');
 		assert.equal(carVar.park(), 'Stopped');
 	});
 
 	it('checkVroom', () => {
-		const carVar = new Car('InitStatus');
+		// const carVar = new Car('InitStatus');
 		assert.equal(carVar.drive(), 'Vroom Vroom');
 	});
 
