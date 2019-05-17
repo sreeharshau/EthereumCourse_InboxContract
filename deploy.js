@@ -14,7 +14,7 @@ const DEPLOY_MSG = 'blahInitialMessage';
 
 // This time we create a provider to pass to Web3
 // Arg 1 is the account mnemonic phrase which is used to derive public and private keys and thus, unlock the accounts
-// Arg 2 is the Infura endpoint for Rinkeby obtained from the project we created on Infura
+// Arg 2 is the Infura endpoint for Rinkeby obtained from the project we created on Infura - Use https to get past Connection error
 // Arg 3 is the index of the account we want to unlock, here it is 1 because our second account has ether on Rinkeby
 const provider = new HDWalletProvider(
 	accountMnemonic,
@@ -32,12 +32,12 @@ const deploy = async () => {
 	console.log("Attempting to deploy contract using account:", fetchedAccounts[0]);
 
 	// Deploy contract using the second account i.e. fetchedAccounts[1] since it has Rinkeby ether
-	// const inbox = await new web3.eth.Contract(JSON.parse(interface))
-	// .deploy({ data: bytecode, arguments: [DEPLOY_MSG] })
-	// .send({ from: fetchedAccounts[0], gas: '1000000' });
+	const inbox = await new web3.eth.Contract(JSON.parse(interface))
+	.deploy({ data: bytecode, arguments: [DEPLOY_MSG] })
+	.send({ from: fetchedAccounts[0], gas: '1000000' });
 
 	// IMPORTANT!: Log the deployment address for future use, either onto console or into a file
-	// console.log("Contract deployed to address:",inbox.options.address);
+	console.log("Contract deployed to address:",inbox.options.address);
 };
 
 
